@@ -4,15 +4,64 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sample;
+// マニュアルからコピペ
+use Illuminate\Support\Facades\DB;
 
 class SampleController extends Controller
 {
     //
     public function index()
     {
+        // 20220511 追記
+        // PHPでDBから情報とってきたとき FETCH_ASSOC
+        // 連想配列 key:value
+
+        // Laravelの場合は
+        // 連想配列を拡張したような情報を取得
+        // コレクション (Collection型)
+
+        // mysqlにつないでいますが、
+        // 環境によっては別のDB
+        // ex) postgreSQL, amazon Aurora, MS SQL, oracle
+        // DBが変わるとクエリを変更が必要(本来は)
+
+        // O/Rマッパー（ORM)
+        // DBに問わず、共通でかける仕組み
+        // O/RマッパーのLaravelで用意されてるのが
+        // Eloquent(エロクアント)
+        
+        // DBから情報を取得する方法が2種類
+        // 1. Eloquent(エロクアント)
+        // ->オリジナルのメソッドが追加
+        $eloquent = Sample::all();
+        
+
+        // 2. クエリビルダ(Query Builder)
+        // -> selectとかwhereとか
+        // SQL分に近い
+        $queryBuilderGet = DB::table('samples')->get();
+        $queryBuilderFirst = DB::table('samples')->first();
+
+        // コレクション型
+        $collection = collect(['aaa', 'bbb']);
+
+        // 4つのパターンの違いを見てみる
+        // dd($eloquent, 
+        // $queryBuilderGet, 
+        // $queryBuilderFirst, 
+        // $collection);
+
         // Model::all() で全件取得
         $samples = Sample::all();
 
+        // エロクアントでいろいろやってみる
+        // $samples = Sample::where('name', 'コーラ')
+        // ->where('email', 'like', '%@test.com')
+        // ->get();
+
+        // dd($samples);
+        
+ 
         // php 
         // select ** from テーブル;
 
