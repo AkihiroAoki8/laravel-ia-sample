@@ -17,6 +17,7 @@ class CommentSeeder extends Seeder
     public function run()
     {
         // DBテーブルの名前 複数形
+        // []のなかに[]を含めるので注意
         DB::table('comments')->insert([
             [ 'content' => 'テスト1'],
             [ 'content' => 'テスト2'],

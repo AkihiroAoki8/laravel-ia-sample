@@ -16,10 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        // ここに追記することでダミー投入
         $this->call([
             CommentSeeder::class,
         ]);
 
+        // factoryはcall外に書く
         \App\Models\Product::factory(1000)->create();
     }
 }

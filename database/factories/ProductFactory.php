@@ -17,6 +17,8 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
+            // fakerをつかってダミーデータを作成する
+            // 書き方はfaker チートシートなどでググる
             'name' => $this->faker->name,
             'user_id' =>  $this->faker->numberBetween(1, 3),
             'is_visible' => $this->faker->boolean
