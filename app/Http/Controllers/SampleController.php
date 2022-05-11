@@ -62,4 +62,56 @@ class SampleController extends Controller
         return redirect()->route('samples.index');
 
     }
+
+    // 20220511追加
+    public function show($id)
+    {
+        // dd($id);
+        
+        // PHPでかくなら
+        // where id = x
+        $sample = Sample::findOrFail($id);
+        
+        // dd($sample);
+
+        return view('samples.show', compact('sample'));
+    }
+
+    public function edit($id)
+    {
+        $sample = Sample::findOrFail($id);
+
+        return view('samples.edit', compact('sample'));
+    }
+
+    // 引数 Request
+    // インスタンス化されている
+    // DI(依存性注入)
+    // Dependency Injection
+    public function update(Request $request, $id)
+    {
+        // バリデーション
+
+        // DB内の情報を1件取得
+        $sample = Sample::findOrFail($id);
+
+        // DB内の情報 = フォームに入力された値
+        $sample->name = $request['name'];
+        $sample->email = $request['email'];
+
+        // 保存時はsaveが必須
+        $sample->save();
+
+        // セッションメッセージ
+
+        return redirect()->route('samples.index');
+
+    }
+
+    public function delete($id)
+    {
+        $sample = Sample::findOrFail($id)->delete();
+
+        return redirect()->route('samples.index');
+    }
 }

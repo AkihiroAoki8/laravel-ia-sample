@@ -28,10 +28,16 @@ Route::get('/', function () {
 // 最初の引数は ブラウザのURL
 // コントローラ, その中のメソッド,
 // name は route() ヘルパ関数
-
+// 20220510
 Route::get('/samples/index', [ SampleController::class, 'index'])->name('samples.index');
 Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
 Route::post('/samples/store', [ SampleController::class, 'store' ])->name('samples.store');
+
+// 20220511
+Route::get('/samples/{id}', [ SampleController::class, 'show'])->name('samples.show');
+Route::get('/samples/{id}/edit', [ SampleController::class, 'edit'] )->name('samples.edit');
+Route::post('/samples/{id}', [ SampleController::class, 'update' ])->name('samples.update');
+Route::post('/samples/{id}/delete', [ SampleController::class, 'delete' ])->name('samples.delete');
 
 // resourceとやると 7つのルートを一度に作れる
 Route::resource('photos', PhotoController::class);
