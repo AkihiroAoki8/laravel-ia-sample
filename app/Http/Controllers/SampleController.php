@@ -22,6 +22,10 @@ class SampleController extends Controller
 
         // return viewでビューファイルを指定する
         // compactで変数を複数ビューファイルに渡せる
+
+        // viewもLaravelのヘルパ関数
+        // resources/views/の中の
+        // フォルダ名.ファイル名
         return view('samples.index', compact('samples'));
     }
 

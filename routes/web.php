@@ -24,6 +24,11 @@ Route::get('/', function () {
 // getかpostで使い分ける
 // nameつけておくと route('ルート名')で指定できる
 // ルートファイル追記した後は php artisan route:listやっとくと無難です。
+
+// 最初の引数は ブラウザのURL
+// コントローラ, その中のメソッド,
+// name は route() ヘルパ関数
+
 Route::get('/samples/index', [ SampleController::class, 'index'])->name('samples.index');
 Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
 Route::post('/samples/store', [ SampleController::class, 'store' ])->name('samples.store');
