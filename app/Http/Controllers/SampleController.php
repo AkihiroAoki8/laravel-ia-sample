@@ -7,6 +7,12 @@ use App\Models\Sample;
 // マニュアルからコピペ
 use Illuminate\Support\Facades\DB;
 
+// update時にuniqueを無視するために読み込ませる
+use Illuminate\Validation\Rule;
+
+use App\Http\Requests\SampleRequest;
+
+
 class SampleController extends Controller
 {
     //
@@ -86,13 +92,18 @@ class SampleController extends Controller
     // 引数で(Request $request)とかくと
     // $requestインスタンスを取得できる
     // この中にフォームの情報が入ってる
-    public function store(Request $request)
+
+    // フォームリクエストを使うときは
+    // 引数を Requestから SampleRequestなど、
+    // つくったリクエストクラスに書き換える
+    public function store(SampleRequest $request)
     {
         // バリデーションはマニュアルそのままコピペでok
-        $validated = $request->validate([
-            'name' => 'required|min:2|max:255',
-            'email' => 'required|email|unique:samples'
-        ]);
+        // フォームリクエスト(SampleRequest)に移動
+        // $validated = $request->validate([
+        //     'name' => 'required|min:2|max:255',
+        //     'email' => 'required|email|unique:samples'
+        // ]);
 
         // dd($request);
 
@@ -140,6 +151,12 @@ class SampleController extends Controller
     public function update(Request $request, $id)
     {
         // バリデーション
+
+        // こう書くと弾かれる
+        // 'email' => 'required|unique:texts|email', 
+
+        // Rule::unique(テーブル名)->ignore とすれば更新時でも登録できる
+        // 'email' => ['required', Rule::unique('texts')->ignore($request->id)],
 
         // DB内の情報を1件取得
         $sample = Sample::findOrFail($id);

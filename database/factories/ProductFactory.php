@@ -17,6 +17,12 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
+
+            // faker->wordだと英語のまま
+             // 'title' => $this->faker->word,
+            // faker->nameやrealText などであれば日本語になる
+            //  'title' => $this->faker->name, // 日本語
+
             // fakerをつかってダミーデータを作成する
             // 書き方はfaker チートシートなどでググる
             'name' => $this->faker->name,
