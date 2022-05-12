@@ -98,7 +98,7 @@ class SampleController extends Controller
     // つくったリクエストクラスに書き換える
     public function store(SampleRequest $request)
     {
-        // バリデーションはマニュアルそのままコピペでok
+        // バリデーションの書き方はマニュアルそのままコピペでok
         // フォームリクエスト(SampleRequest)に移動
         // $validated = $request->validate([
         //     'name' => 'required|min:2|max:255',
