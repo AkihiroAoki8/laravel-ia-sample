@@ -12,12 +12,21 @@ use Illuminate\Validation\Rule;
 
 use App\Http\Requests\SampleRequest;
 
+use App\Models\Product;
 
 class SampleController extends Controller
 {
     //
     public function index()
     {
+        // 20220512 追記
+        // ローカルスコープ 
+        // よく使うクエリをモデル側に書いておいて
+        // コントローラ側は1個のメソッドですませる方法
+        $products = Product::visible()->get();
+        dd($products);
+
+
         // 20220511 追記
         // PHPでDBから情報とってきたとき FETCH_ASSOC
         // 連想配列 key:value

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 
         // ここに追記することでダミー投入
         $this->call([
+            UserSeeder::class,
             CommentSeeder::class,
         ]);
 

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    public function scopeVisible($query)
+    {
+        return $query->where('is_visible', 1);
+    }
 }
