@@ -14,6 +14,12 @@ use App\Http\Requests\SampleRequest;
 
 use App\Models\Product;
 
+// リレーションのテスト
+use App\Models\User;
+
+// Serviceなどを読み込む
+use App\Services\Tests\EchoService;
+
 class SampleController extends Controller
 {
     //
@@ -24,7 +30,34 @@ class SampleController extends Controller
         // よく使うクエリをモデル側に書いておいて
         // コントローラ側は1個のメソッドですませる方法
         $products = Product::visible()->get();
-        dd($products);
+        // dd($products);
+
+        // リレーション 1対多
+        $userProducts = User::find(1)->products;
+        // dd($userProducts);
+        // foreach($userProducts as $userProduct)
+        // {
+        //     echo '<pre>';
+        //     var_dump($userProduct->id, $userProduct->name);
+        //     echo '</pre>';
+        // }
+
+        // リレーション 1対多の 逆バージョン
+        $productUser = Product::find(2)->user;
+        // こう書けばメールアドレスも取得できる
+        // $productUser = Product::find(2)->user->email;
+        // dd($productUser);
+
+        // リレーションの多対多
+        $user = User::find(1);
+        foreach($user->comments as $comment)
+        {
+            // dd($comment);
+        }
+
+        // 処理をServiceに分ける 
+        // できるだけ コントローラのコードを減らすため
+        // dd(EchoService::echoTest());
 
 
         // 20220511 追記

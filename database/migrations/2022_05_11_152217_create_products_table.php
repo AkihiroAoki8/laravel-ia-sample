@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id(); // unsignedBigInteger (unsignedはマイナスがない)
             $table->string('name');
             // リレーションに絡む
-            $table->unsignedBigInteger('user_id');
+            // モデル名_idと書けば、
+            // 自動的に そのモデルのidと紐づく
+            $table->unsignedBigInteger('user_id'); // FK
             $table->boolean('is_visible');
             $table->timestamps();
         });

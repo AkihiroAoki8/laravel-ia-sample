@@ -20,9 +20,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CommentSeeder::class,
+
+            // UserSeederとCommentSeederの後に書く
+            CommentUserSeeder::class
         ]);
 
         // factoryはcall外に書く
-        \App\Models\Product::factory(1000)->create();
+        \App\Models\Product::factory(100)->create();
     }
 }

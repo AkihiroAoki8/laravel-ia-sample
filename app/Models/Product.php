@@ -13,4 +13,13 @@ class Product extends Model
     {
         return $query->where('is_visible', 1);
     }
+
+    // 1つの商品が1人のuserに紐づくので
+    // 単数形でかいてる
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+        
 }

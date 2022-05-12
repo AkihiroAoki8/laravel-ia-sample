@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // 1人のユーザーが、
+    // 複数の商品を持つので 複数形のsがついてる
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function comments()
+    {
+        return $this->belongsToMany(Comment::class);
+    }
 }

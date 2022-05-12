@@ -1,9 +1,10 @@
 <?php
 
+// コントローラをuseで読み込む
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\PhotoController;
-
+use App\Models\Sample;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +17,9 @@ use App\Http\Controllers\PhotoController;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
-
-// Laravel Breezeで生成されたコード
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
-
 
 // getかpostで使い分ける
 // nameつけておくと route('ルート名')で指定できる
