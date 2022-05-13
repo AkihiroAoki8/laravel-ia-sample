@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\LectureController;
+use App\Http\Controllers\LifeCycleController;
 
 
 /*
@@ -59,3 +60,6 @@ Route::post('/samples/{id}/delete', [ SampleController::class, 'delete' ])->name
 
 // resourceとやると 7つのルートを一度に作れる
 Route::resource('photos', PhotoController::class);
+
+// サービスコンテナのサンプル
+Route::get('/service-container-test', [ LifeCycleController::class, 'showServiceContainerTest' ]);
