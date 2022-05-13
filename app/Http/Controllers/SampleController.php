@@ -52,7 +52,7 @@ class SampleController extends Controller
         $user = User::find(1);
         foreach($user->comments as $comment)
         {
-            // dd($comment);
+            // dd($comment->pivot->comment_id);
         }
 
         // 処理をServiceに分ける 

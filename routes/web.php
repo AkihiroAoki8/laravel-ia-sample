@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\LectureController;
 
 
 /*
@@ -26,6 +27,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function(){
+    Route::get('/lectures/', [ LectureController::class, 'index'])->name('lectures.index');    
+});
+
+
+// Route::middleware(['auth'])->group(function(){
+//     Route::get('/lecture/', [LectureController::class, 'index'])->name('lecture.index');
+// });
+
 require __DIR__.'/auth.php';
 
 
@@ -41,7 +51,7 @@ Route::get('/samples/index', [ SampleController::class, 'index'])->name('samples
 Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
 Route::post('/samples/store', [ SampleController::class, 'store' ])->name('samples.store');
 
-// 20220511
+// // 20220511
 Route::get('/samples/{id}', [ SampleController::class, 'show'])->name('samples.show');
 Route::get('/samples/{id}/edit', [ SampleController::class, 'edit'] )->name('samples.edit');
 Route::post('/samples/{id}', [ SampleController::class, 'update' ])->name('samples.update');

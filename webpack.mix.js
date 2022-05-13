@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+ //    開発フォルダ, 公開フォルダ
+ //
 mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),
