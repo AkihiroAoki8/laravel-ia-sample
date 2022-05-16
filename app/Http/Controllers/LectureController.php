@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 // マニュアルからコピペ
 use Illuminate\Support\Facades\Auth;
 
+// マニュアルからコピペ
+use Illuminate\Support\Facades\Log;
 
 class LectureController extends Controller
 {
@@ -14,8 +16,11 @@ class LectureController extends Controller
         $user = Auth::user();
         $userId = Auth::id();
 
-        dd($user, $userId);
+        Log::info('LectureController_index' . Auth::id());
 
+        // dd($user, $userId);
+
+        return view('lectures.index');
     }
     //
     // public function index()
